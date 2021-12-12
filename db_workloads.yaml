@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-test-report
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: postgres-test-report
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-test-report
+spec:
+  selector:
+    matchLabels:
+      app: postgres-test-report
+  template:
+    metadata:
+      labels:
+        app: postgres-test-report
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:9.6.5
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_HOST
+              value: postgres-test-report
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_DATABASE
+              value: postgres
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: mynewpassword
+
+---

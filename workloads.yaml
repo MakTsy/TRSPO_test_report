@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-test-report
+spec:
+  selector:
+    app: service-test-report
+  type: NodePort
+  ports:
+    - name: http
+      port: 8080
+      nodePort: 31004
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-test-report
+spec:
+  selector:
+    matchLabels:
+      app: service-test-report
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service-test-report
+    spec:
+      containers:
+        - name: server
+          image: maktsy/service-test-report
+          env:
+            - name: POSTGRES_HOST
+              value: postgres-test-report
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_DATABASE
+              value: postgres
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: mynewpassword
+          ports:
+            - name: http
+              containerPort: 8080
+
+---
