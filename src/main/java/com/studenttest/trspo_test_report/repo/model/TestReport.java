@@ -22,11 +22,13 @@ public class TestReport {
     long testId;
     long correctAnswersNumber;
     long questionNumber;
+    String datetime;
 
-    public TestReport(long userId, long testId, long correctAnswersNumber, long questionNumber) {
+    public TestReport(long userId, long testId, long correctAnswersNumber, long questionNumber, String datetime) {
         this.userId = userId;
         this.testId = testId;
         this.correctAnswersNumber = correctAnswersNumber;
         this.questionNumber = questionNumber;
+        this.datetime = datetime;
     }
 }

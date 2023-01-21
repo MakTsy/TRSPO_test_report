@@ -1,5 +1,7 @@
 package com.studenttest.trspo_test_report.service.impl;
 
+import static com.studenttest.trspo_test_report.clients.DateTimeClient.getCurrentTime;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -39,7 +41,8 @@ public class TestReportServiceImpl implements TestReportService {
     public long createTestReport(long userId, long testId) {
         long questionNumber = TestManagementClient.getTestAnswers(testId).size();
         long correctAnswersNumber = getCorrectAnswers(userId, testId);
-        final TestReport testReport = new TestReport(userId, testId, correctAnswersNumber, questionNumber);
+        String datetime = getCurrentTime();
+        final TestReport testReport = new TestReport(userId, testId, correctAnswersNumber, questionNumber, datetime);
         final TestReport savedTestReport = testReportRepo.save(testReport);
 
         return savedTestReport.getId();
