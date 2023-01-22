@@ -11,7 +11,7 @@ public class DateTimeClient {
 
     private DateTimeClient() {}
 
-    private static final String DATE_TIMR_SERVICE_URL_ADRESS = "http://timr-service:8085/time";
+    private static final String DATE_TIMR_SERVICE_URL_ADRESS = "http://time-service:8085/time";
 
     public static String getCurrentTime() {
         final RestTemplate restTemplate = new RestTemplate();
