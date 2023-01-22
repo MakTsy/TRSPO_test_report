@@ -1,5 +1,6 @@
 package com.studenttest.trspo_test_report.repo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,11 +18,16 @@ public class TestReport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     long id;
     long userId;
+    @Column
     long testId;
+    @Column
     long correctAnswersNumber;
+    @Column
     long questionNumber;
+    @Column
     String datetime;
 
     public TestReport(long userId, long testId, long correctAnswersNumber, long questionNumber, String datetime) {

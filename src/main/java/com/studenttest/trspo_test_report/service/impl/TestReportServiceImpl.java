@@ -42,6 +42,7 @@ public class TestReportServiceImpl implements TestReportService {
         long questionNumber = TestManagementClient.getTestAnswers(testId).size();
         long correctAnswersNumber = getCorrectAnswers(userId, testId);
         String datetime = getCurrentTime();
+        System.out.println(datetime);
         final TestReport testReport = new TestReport(userId, testId, correctAnswersNumber, questionNumber, datetime);
         final TestReport savedTestReport = testReportRepo.save(testReport);
 

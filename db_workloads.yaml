@@ -28,6 +28,7 @@ spec:
           image: postgres:9.6.5
           ports:
             - containerPort: 5432
+          imagePullPolicy: Always
           env:
             - name: POSTGRES_HOST
               value: postgres-test-report
